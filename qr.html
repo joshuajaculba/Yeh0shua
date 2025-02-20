@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        #output {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>📌 Scanned QR Code Data</h1>
+    <div id="output">Loading...</div>
+
+    <script>
+        // Get the URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const data = params.get("data"); // Extract 'data' parameter
+
+        // Check if data exists
+        if (data) {
+            let outputDiv = document.getElementById("output");
+
+            // If it's a link (starts with http), make it clickable
+            if (data.startsWith("http")) {
+                outputDiv.innerHTML = `<a href="${data}" target="_blank">📄 Open Link</a>`;
+            } else {
+                outputDiv.textContent = data; // Just show text data
+            }
+        } else {
+            document.getElementById("output").textContent = "No data found.";
+        }
+    </script>
+</body>
+</html>
